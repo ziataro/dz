@@ -7,7 +7,7 @@ matrix = [['', '', '', '', '', ''],
           ['', '', '', '', '', '']]
 InMassive = 0
 matrix_to_txt = ''
-f = open('matrix.txt', 'r', encoding='utf-8')
+f = open('3laba/matrix.txt', 'r', encoding='utf-8')
 string_matrix = f.readline()
 string_matrix = string_matrix.split()
 for i in range(6):
@@ -72,7 +72,7 @@ while True:
         for i in range(6):
             matrix_to_txt += ''.join(matrix[i])
             matrix_to_txt += ' '
-        with open('matrix.txt', 'w',  encoding='utf-8') as f:
+        with open('3laba/matrix.txt', 'w',  encoding='utf-8') as f:
             f.write(matrix_to_txt)
         break
     else:
