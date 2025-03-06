@@ -1,21 +1,7 @@
-import random
-matrix = [['', '', '', '', '', ''],
-          ['', '', '', '', '', ''],
-          ['', '', '', '', '', ''],
-          ['', '', '', '', '', ''],
-          ['', '', '', '', '', ''],
-          ['', '', '', '', '', '']]
-InMassive = 0
-matrix_to_txt = ''
-f = open('3laba/matrix.txt', 'r', encoding='utf-8')
-string_matrix = f.readline()
-string_matrix = string_matrix.split()
-for i in range(6):
-    for j in range(0, 6):
-        matrix[i][j] = string_matrix[i][j]
-        if matrix[i][j] == 'N':
-            matrix[i][j] = ' '
+from matrix_generator import matrix_generate, matrix_shuffle, matrix
 
+matrix_generate()
+InMassive = 0
 while True:
     # Ввод текста для шифрования
     word = input("Введите слово для шифровки(Внимание английские символы не будут учитываться):")
@@ -34,6 +20,8 @@ for i in range(6):
     for j in range(6):
         print(matrix[i][j], end=' ')
     print()
+
+
 def polibiy(text, chipher):
     encrypted_text = ""
     for word in text:
@@ -44,37 +32,29 @@ def polibiy(text, chipher):
                         if i + 1 >= len(matrix):
                             encrypted_text += matrix[0][j]
                         else:
-                            encrypted_text += matrix[i+1][j]
+                            encrypted_text += matrix[i + 1][j]
                         break
                     else:
                         if i + 1 > len(matrix):
                             encrypted_text += matrix[-i][j]
                         else:
-                            encrypted_text += matrix[i-1][j]
+                            encrypted_text += matrix[i - 1][j]
                         break
     return encrypted_text
+
 
 while True:
     choice = input("Хотите зашифровать или дешифровать текст? Введите ш/д для шифровки или дешифровки ")
     if choice == "ш":
-    # Вывод зашифрованного текста
+        # Вывод зашифрованного текста
         print("Зашифрованный текст:", polibiy(word, True))
+        choice_shuffle = input("Хотите случайно отсортировать матрицу?")
         break
     elif choice == "д":
         # Вывод расшифрованного текста
         print("Расшифрованный текст:", polibiy(word, False))
-        for i in range(6):
-            random.shuffle(matrix[i])
-        for i in range(6):
-            for j in range(0, 6):
-                if matrix[i][j] == ' ':
-                    matrix[i][j] = 'N'
-        for i in range(6):
-            matrix_to_txt += ''.join(matrix[i])
-            matrix_to_txt += ' '
-        with open('3laba/matrix.txt', 'w',  encoding='utf-8') as f:
-            f.write(matrix_to_txt)
+        choice_shuffle = input("Хотите случайно отсортировать матрицу?")
+        matrix_shuffle()
         break
     else:
         print("Неверный формат ввода")
-f.close()
