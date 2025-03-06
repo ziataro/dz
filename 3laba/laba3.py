@@ -4,7 +4,7 @@ matrix_generate()
 InMassive = 0
 while True:
     # Ввод текста для шифрования
-    word = input("Введите слово для шифровки(Внимание английские символы не будут учитываться):")
+    word = input("Введите слово для шифровки:")
     for i in range(len(matrix)):
         for j in range(len(matrix[i])):
             for k in word:
@@ -44,17 +44,34 @@ def polibiy(text, chipher):
 
 
 while True:
-    choice = input("Хотите зашифровать или дешифровать текст? Введите ш/д для шифровки или дешифровки ")
+    choice = input("Хотите зашифровать или дешифровать текст? Введите ш/д для шифровки или дешифровки: ")
     if choice == "ш":
         # Вывод зашифрованного текста
         print("Зашифрованный текст:", polibiy(word, True))
-        choice_shuffle = input("Хотите случайно отсортировать матрицу?")
+        choice_shuffle = input("Хотите случайно отсортировать матрицу?д/н: ")
+        while True:
+            if choice_shuffle == "н":
+                break
+            elif choice_shuffle == "д":
+                print("Новый вид матрицы:")
+                matrix_shuffle()
+                break
+            else:
+                print("Неверный формат ввода")
         break
     elif choice == "д":
         # Вывод расшифрованного текста
         print("Расшифрованный текст:", polibiy(word, False))
-        choice_shuffle = input("Хотите случайно отсортировать матрицу?")
-        matrix_shuffle()
+        choice_shuffle = input("Хотите случайно отсортировать матрицу?д/н: ")
+        while True:
+            if choice_shuffle == "н":
+                break
+            elif choice_shuffle == "д":
+                print("Новый вид матрицы:")
+                matrix_shuffle()
+                break
+            else:
+                print("Неверный формат ввода")
         break
     else:
         print("Неверный формат ввода")
